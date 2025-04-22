@@ -1,3 +1,6 @@
+1.0.13:
+    Add completer for the -Module parameter in Update-Help and Save-Help for Windows PowerShell
+    Add completer for the -Source parameter in numerous Microsoft.WinGet.Client cmdlets
 1.0.12:
     Add completers for Set-TimeZone
     Add completers for the Name parameter for the *PSSessionConfiguration commands
