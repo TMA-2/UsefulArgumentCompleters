@@ -4,15 +4,15 @@ Register-ArgumentCompleter -CommandName Update-Help,Save-Help -ParameterName Mod
     param($commandName, $parameterName, $wordToComplete, $commandAst, $fakeBoundParameters)
 
     $WildcardInput = [CompletionHelper]::TrimQuotes($wordToComplete) + '*'
-    foreach ($Module in [CompletionHelper]::GetCachedResults('Get-Module -ListAvailable | Where-Object -Property RepositorySourceLocation -NE $null | Select-Object -ExpandProperty Name | Sort-Object -Unique', $false))
+    foreach ($Module in [CompletionHelper]::GetCachedResults('Get-Module -ListAvailable | Where-Object {$null -ne $_.HelpInfoUri} | Sort-Object -Unique -Property Name | Select-Object Name,Version', $false))
     {
         if ($null -eq $Module)
         {
             continue
         }
-        if ($Module -like $WildcardInput)
+        if ($Module.Name -like $WildcardInput)
         {
-            [CompletionHelper]::NewParamCompletionResult($Module)
+            [CompletionHelper]::NewParamCompletionResult($Module, $Module.Name + " v" + $Module.Version)
         }
     }
 }

@@ -538,3 +538,8 @@
 "Wait-VM","Name"
 "Write-VolumeCache","DriveLetter"
 "Write-VolumeCache","FileSystemLabel"
+"Get-Variable","Scope"
+"Set-Variable","Scope"
+"New-Variable","Scope"
+"Clear-Variable","Scope"
+"Remove-Variable","Scope"
