@@ -2,7 +2,7 @@ using module .\Classes\CompletionHelper.psm1
 
 Register-ArgumentCompleter -CommandName New-ItemProperty -ParameterName PropertyType -ScriptBlock {
     param($commandName, $parameterName, $wordToComplete, $commandAst, $fakeBoundParameters)
-    
+
     $ResolveArgument = if ($null -ne $fakeBoundParameters['Path'])
     {
         @{LiteralPath = $fakeBoundParameters['Path']}
@@ -15,7 +15,7 @@ Register-ArgumentCompleter -CommandName New-ItemProperty -ParameterName Property
     {
         @{Path = '.\'}
     }
-    
+
     $Values = switch ((Resolve-Path @ResolveArgument | Select-Object -First 1).Provider.Name)
     {
         'Registry'
@@ -44,5 +44,42 @@ Register-ArgumentCompleter -CommandName New-ItemProperty -ParameterName Property
         {
             [CompletionHelper]::NewParamCompletionResult($Item['Name'], $Item['ToolTip'])
         }
+    }
+}
+
+# Argument completer for Name when Path is a registry key.
+Register-ArgumentCompleter -CommandName New-ItemProperty,Set-ItemProperty,Get-ItemProperty,Get-ItemPropertyValue -ParameterName Name -ScriptBlock {
+    param($commandName, $parameterName, $wordToComplete, $commandAst, $fakeBoundParameters)
+
+    # Get the path or literalpath
+    if ($null -ne $fakeBoundParameters['Path'])
+    {
+        $ResolveArgument = @{LiteralPath = $fakeBoundParameters['Path']}
+    }
+    elseif ($null -ne $fakeBoundParameters['LiteralPath'])
+    {
+        $ResolveArgument = @{LiteralPath = $fakeBoundParameters['LiteralPath']}
+    }
+    else
+    {
+        return
+    }
+
+    # Verify the path is a registry key
+    if((Resolve-Path @ResolveArgument)[0].Provider.Name -ne 'Registry')
+    {
+        return
+    }
+
+    $WildcardInput = [CompletionHelper]::TrimQuotes($wordToComplete) + '*'
+    # Exclude default registry properties
+    $ExcludeProperties = @('PSPath', 'PSParentPath', 'PSChildName', 'PSDrive', 'PSProvider')
+
+    # Get values matching Name input
+    $RegistryValues = Get-ItemProperty @ResolveArgument | Select-Object -Property $WildcardInput -ExcludeProperty $ExcludeProperties
+
+    foreach ($RegistryValue in $RegistryValues.psobject.properties)
+    {
+        [CompletionHelper]::NewParamCompletionResult($RegistryValue.Name, $RegistryValue.Value)
     }
 }
