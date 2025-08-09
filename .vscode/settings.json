@@ -1,0 +1,7 @@
+{
+  "[powershell]": {
+    "editor.semanticHighlighting.enabled": false,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": "active"
+  }
+}

@@ -1,0 +1,27 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+charset = utf-8
+indent_style = space
+indent_size = unset
+trim_trailing_whitespace = unset
+insert_final_newline = unset
+
+# PowerShell
+[*.{ps1,psm1,psd1}]
+indent_style = space
+indent_size = 4
+end_of_line = crlf
+charset = utf-8-bom
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# XML
+[*.{xml,ps1xml}]
+trim_trailing_whitespace = false
+insert_final_newline = unset
+
+# JSON
+[*.{json,jsonc}]
+indent_size = 2

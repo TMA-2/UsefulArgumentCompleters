@@ -1,1 +1,9 @@
 Releases/*
+
+# PowerShell Gallery/PSResourceGet/nuget package artifacts
+_rels/
+package/
+*.nupkg
+*.snupkg
+*.nuspec
+[Content_Types].xml

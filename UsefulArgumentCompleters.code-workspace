@@ -1,0 +1,26 @@
+{
+  "settings": {
+    "editor.snippetSuggestions": "bottom",
+    "powershell.codeFormatting.preset": "Allman",
+    // Set by the above
+    // "powershell.codeFormatting.newLineAfterCloseBrace": true,
+    // "powershell.codeFormatting.newLineAfterOpenBrace": true,
+    // "powershell.codeFormatting.openBraceOnSameLine": false,
+    "powershell.scriptAnalysis.settingsPath": ".vscode/PSScriptAnalyzerSettings.psd1",
+    "powershell.codeFormatting.addWhitespaceAroundPipe": true,
+    "powershell.codeFormatting.pipelineIndentationStyle": "IncreaseIndentationForFirstPipeline",
+    "powershell.codeFormatting.ignoreOneLineBlock": true,
+    "powershell.codeFormatting.trimWhitespaceAroundPipe": true,
+    "powershell.codeFormatting.whitespaceAfterSeparator": true,
+    "powershell.codeFormatting.whitespaceAroundOperator": true,
+    "powershell.codeFormatting.whitespaceBeforeOpenBrace": true,
+    "powershell.codeFormatting.whitespaceBeforeOpenParen": true,
+    "powershell.codeFormatting.whitespaceBetweenParameters": true,
+    "powershell.codeFormatting.whitespaceInsideBrace": false,
+    "[powershell]": {
+      "editor.semanticHighlighting.enabled": false,
+      "editor.bracketPairColorization.enabled": true,
+      "editor.guides.bracketPairs": "active"
+    }
+  }
+}
