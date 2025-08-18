@@ -5,6 +5,7 @@
         PropertyType completer for New-ItemProperty
     Made the AppxPublisher and package completers available for PowerShell because it works in Windows 11 and Windows 10 support is ending soon.
     Removed the repository completers for all PowerShellGet commands except Set-PSRepository. The latest version of PowerShellGet includes these completers.
+    Added COM object completer for New-Object -ComObject
 1.0.12:
     Add completers for Set-TimeZone
     Add completers for the Name parameter for the *PSSessionConfiguration commands
