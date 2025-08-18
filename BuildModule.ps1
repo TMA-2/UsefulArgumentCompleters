@@ -7,10 +7,6 @@ using namespace System.Management.Automation.Language
 [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'High')]
 param
 (
-    [Parameter(Mandatory)]
-    [Alias("ModuleVersion")]
-    [version]$Version,
-
     [Parameter()]
     [string]
     $Destination = "$PSScriptRoot\Releases",
@@ -20,6 +16,9 @@ param
     $UpdatePSGalleryData
 )
 $ModuleName="UsefulArgumentCompleters"
+
+$ReleaseNotes = Get-Content -LiteralPath "$PSScriptRoot\Release notes.txt" -Raw
+$Version = $ReleaseNotes.Split(':')[0]
 
 if ($UpdatePSGalleryData)
 {
@@ -132,7 +131,6 @@ $FileList = (Get-ChildItem -LiteralPath $DestinationDirectory -File -Recurse | F
 $PublicFunctionNames = ($PublicFunctionNames | ForEach-Object -Process {
     "'$_'"
 }) -join ','
-$ReleaseNotes = Get-Content -LiteralPath "$PSScriptRoot\Release notes.txt" -Raw
 
 ((Get-Content -LiteralPath "$PSScriptRoot\ModuleManifest.psd1" -Raw) -replace '{(?=[^\d])','{{' -replace '(?<!\d)}','}}') -f @(
     "'$Version'"
