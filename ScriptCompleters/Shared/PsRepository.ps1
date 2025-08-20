@@ -9,17 +9,4 @@ $ScriptBlock = {
         [CompletionHelper]::NewParamCompletionResult($Repository.Name, $Repository.SourceLocation)
     }
 }
-Register-ArgumentCompleter -ScriptBlock $ScriptBlock -ParameterName Name -CommandName Get-PSRepository,Set-PSRepository,Unregister-PSRepository
-Register-ArgumentCompleter -ScriptBlock $ScriptBlock -ParameterName Repository -CommandName @(
-    'Find-Command'
-    'Find-DscResource'
-    'Find-Module'
-    'Find-RoleCapability'
-    'Find-Script'
-    'Install-Module'
-    'Install-Script'
-    'Publish-Module'
-    'Publish-Script'
-    'Save-Module'
-    'Save-Script'
-)
+Register-ArgumentCompleter -ScriptBlock $ScriptBlock -ParameterName Name -CommandName Set-PSRepository
