@@ -1,11 +1,17 @@
 # Changelog
 
-## [Unreleased] - 2025-06-27
+## [Unreleased] - 2025-08-22
 
 ### Added
+- Added a properly formatted Changelog using the [keepachangelog.com](https://keepachangelog.com) standards using `Release notes.txt` as the source
 - Added a workspace file with PowerShell code formatting rules
-- Added `.vscode\PSScriptAnalyzerSettings.psd1` with the syntax/rules used
-- Added `.editorconfig`
+- Added `.vscode` folder
+  - Added `.vscode\settings.json`
+  - Added `.vscode\launch.json`
+  - Added `.vscode\tasks.json`
+  - Added `.vscode\PSScriptAnalyzerSettings.psd1` with the apparent syntax/rules used
+- Added `.editorconfig` with the syntax used
+
 - Added `WindowsPowerShell\Variable.ps1` completer
 - Added Variable completers to `ArgumentCompleters.csv`
 - Added completion for `-Parameter` for `Get-Help`
@@ -13,11 +19,16 @@
 - Added `Shared\CimInstance.ps1` completion for `-QueryDialect`
 
 ### Changed
-- Re-formatted `Release notes.txt` to a properly formatted Changelog using the [keepachangelog.com](https://keepachangelog.com) standards
+- Modified `BuildModule.ps1` to retrieve the version from `CHANGELOG.md` before `Release notes.txt`
 - Modified `WindowsPowerShell\AdProperties.ps1` to use parameter=description hashtables for the completion tooltip
 - Modified `WindowsPowerShell\Variable.ps1` to include 0, 1, 2 for `-Scope` along with Local, Global, etc.
 - Moved ConfigurationManager to `MECM` folder and modified the list of supported cmdlets. **WIP**
 - Modified a few things in `WindowsPowerShell\Help.ps1`
+
+## [2.0.1] - 2025-08-20
+### Added
+- Added completer for winget.
+- Added completer for `Get-Help` `-Parameter`
 
 ## [2.0.0] - 2025-08-18
 
