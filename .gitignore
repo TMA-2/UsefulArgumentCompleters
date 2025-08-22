@@ -1,1 +1,18 @@
-Releases/*
+Releases/
+
+# PowerShell Gallery/PSResourceGet/nuget package artifacts
+_rels/
+package/
+*.nupkg
+*.snupkg
+*.nuspec
+[Content_Types].xml
+
+# VSCode-specific
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/PSScriptAnalyzerSettings.psd1
+*.code-workspace
