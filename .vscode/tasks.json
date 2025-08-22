@@ -1,0 +1,92 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Module",
+            "type": "shell",
+            "command": "pwsh.exe",
+            "args": [
+                "-File",
+                "${workspaceFolder}\\BuildModule.ps1"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "Build Module with PSGallery Update",
+            "type": "shell",
+            "command": "pwsh.exe",
+            "args": [
+                "-File",
+                "${workspaceFolder}\\BuildModule.ps1",
+                "-UpdatePSGalleryData"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "Build Module (Interactive)",
+            "type": "shell",
+            "command": "pwsh.exe",
+            "args": [
+                "-Command",
+                "${input:buildCommand}"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        }
+    ],
+    "inputs": [
+        {
+            "id": "buildCommand",
+            "description": "Choose build options",
+            "type": "pickString",
+            "options": [
+                {
+                    "label": "Build Module (Standard)",
+                    "value": "& '${workspaceFolder}\\BuildModule.ps1'"
+                },
+                {
+                    "label": "Build Module with PSGallery Data Update",
+                    "value": "& '${workspaceFolder}\\BuildModule.ps1' -UpdatePSGalleryData"
+                }
+            ]
+        }
+    ]
+}
