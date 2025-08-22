@@ -17,8 +17,18 @@ param
 )
 $ModuleName="UsefulArgumentCompleters"
 
-$ReleaseNotes = Get-Content -LiteralPath "$PSScriptRoot\Release notes.txt" -Raw
-$Version = $ReleaseNotes.Split(':')[0]
+# Try to get version from CHANGELOG.md or Release notes.txt
+if (Test-Path -LiteralPath "$PSScriptRoot\CHANGELOG.md")
+{
+    $Version = Select-String -LiteralPath "$PSScriptRoot\CHANGELOG.md" -Pattern '^##\s+\[(?<version>\d+(?:\.\d+){2})\]' | Select-Object -First 1
+    $Version = $Version.Matches.Captures.Groups['version'].Value
+}
+else
+{
+    # Fallback to Release notes.txt
+    $ReleaseNotes = Get-Content -LiteralPath "$PSScriptRoot\Release notes.txt" -Raw
+    $Version = $ReleaseNotes.Split(':')[0]
+}
 
 if ($UpdatePSGalleryData)
 {
