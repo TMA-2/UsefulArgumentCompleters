@@ -1,3 +1,6 @@
+2.0.1:
+    Added completer for winget.
+    Added completer for Get-Help -Parameter
 2.0.0:
     Made it so the following completers are only imported in Windows PowerShell because PowerShell has been updated to have them built in:
         Verb and Noun completer for Get-Command and Get-Verb
